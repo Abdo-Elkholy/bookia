@@ -42,6 +42,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/book3.jpg
   AssetGenImage get book3 => const AssetGenImage('assets/images/book3.jpg');
 
+  /// File path: assets/images/logo.png
+  AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
+
   /// File path: assets/images/slider_background.png
   AssetGenImage get sliderBackground =>
       const AssetGenImage('assets/images/slider_background.png');
@@ -55,9 +58,23 @@ class $AssetsImagesGen {
     book1,
     book2,
     book3,
+    logo,
     sliderBackground,
     splashBackground,
   ];
+}
+
+class $AssetsTranslationsGen {
+  const $AssetsTranslationsGen();
+
+  /// File path: assets/translations/ar.json
+  String get ar => 'assets/translations/ar.json';
+
+  /// File path: assets/translations/en.json
+  String get en => 'assets/translations/en.json';
+
+  /// List of all assets
+  List<String> get values => [ar, en];
 }
 
 class Assets {
@@ -65,6 +82,7 @@ class Assets {
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsTranslationsGen translations = $AssetsTranslationsGen();
 }
 
 class AssetGenImage {

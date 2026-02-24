@@ -1,6 +1,7 @@
 import 'package:bookia/features/home/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -25,7 +26,7 @@ class HomeScreen extends StatelessWidget {
                           context.read<HomeCubit>().ontap(i);
                         },
                         child: CircleAvatar(
-                          radius: 30,
+                          radius: 30.sp,
                           backgroundColor: context.read<HomeCubit>().check(i),
                         ),
                       ),
@@ -36,7 +37,7 @@ class HomeScreen extends StatelessWidget {
               SizedBox(height: 40),
               BlocBuilder<HomeCubit, HomeState>(
                 buildWhen: (prev, current) =>
-                    current is IncrementState || current == DecrementState,
+                    current is IncrementState || current is DecrementState,
                 builder: (context, state) {
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.center,

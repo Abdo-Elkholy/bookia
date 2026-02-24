@@ -18,6 +18,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   void minas() {
     long--;
+    long < 0 ? long = 0 : null;
     emit(DecrementState());
   }
 

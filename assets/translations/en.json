@@ -1,5 +1,17 @@
 {
 
   "hello": "Hello",
-  "log in": "Login"
+  "log in": "Login",
+  "on_boarding_screen": "Order Your Book Now!",
+  "Login": "Login",
+  "Register": "Register",
+  "Welcome back! Glad to see you, Again!": "Welcome back! Glad to see you, Again!",
+  "Hello! Register to get started": "Hello! Register to get started",
+  "Don’t have an account?": "Don’t have an account?",
+  "Register Now": "Register Now",
+  "Already have an account?": "Already have an account?",
+  "Login Now": "Login Now",
+  "Forgot Password?": "Forgot Password?",
+  "Sign in with Google": "Sign in with Google",
+  "Sign in with Apple": "Sign in with Apple"
 }

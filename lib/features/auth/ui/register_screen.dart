@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../core/routing/routs.dart';
 import '../../../core/widgets/app_bar.dart';
 import '../../../core/widgets/app_text_form_field.dart';
 import '../../../core/widgets/main_app_button.dart';
@@ -44,7 +45,7 @@ class RegisterScreen extends StatelessWidget {
               AuthFooterWidget(
                 title: "Already have an account?".tr(),
                 action: "Login Now".tr(),
-                target: RegisterScreen(),
+                target: Routs.loginScreen,
               ),
             ],
           ),

@@ -1,3 +1,4 @@
+import 'package:bookia/core/helper/extentions.dart';
 import 'package:bookia/core/theme/app_colors.dart';
 import 'package:bookia/core/theme/app_text_style.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,7 @@ import 'package:flutter/material.dart';
 class AuthFooterWidget extends StatelessWidget {
   final String title;
   final String action;
-  final Widget target;
+  final String target;
   const AuthFooterWidget({
     super.key,
     required this.title,
@@ -21,10 +22,7 @@ class AuthFooterWidget extends StatelessWidget {
         Text(title, style: AppTextStyle.text14Regular),
         GestureDetector(
           onTap: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (c) => target),
-            );
+            context.pushNamedAndRemove(target);
           },
           child: Text(
             action,

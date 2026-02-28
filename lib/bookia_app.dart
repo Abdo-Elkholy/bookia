@@ -1,10 +1,13 @@
+import 'package:bookia/core/routing/app_router.dart';
+import 'package:bookia/core/routing/routs.dart';
 import 'package:bookia/features/on_boarding/ui/on_boarding_screen/on_boarding_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BookiaApp extends StatelessWidget {
-  const BookiaApp({super.key});
+  final String? token;
+  const BookiaApp({super.key, required this.token});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,17 @@ class BookiaApp extends StatelessWidget {
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
+        onGenerateRoute: AppRouter.generateRout,
+        initialRoute: startScreen(),
       ),
     );
+  }
+
+  String startScreen() {
+    if (token == null) {
+      return Routs.onBoardingScreen;
+    } else {
+      return Routs.homeScreen;
+    }
   }
 }

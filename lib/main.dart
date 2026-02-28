@@ -1,11 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'bookia_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? token = prefs.getString("token");
+
   await Future.wait([
     ScreenUtil.ensureScreenSize(),
     EasyLocalization.ensureInitialized(),
@@ -17,7 +21,7 @@ void main() async {
       path: 'assets/translations',
       fallbackLocale: Locale('en'),
       useOnlyLangCode: true,
-      child: BookiaApp(),
+      child: BookiaApp(token: token),
     ),
   );
 }

@@ -13,6 +13,7 @@ class LoginOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Stack(
           alignment: AlignmentGeometry.center,
@@ -35,10 +36,12 @@ class LoginOptions extends StatelessWidget {
             ),
           ],
         ),
+        SizedBox(height: 15.h),
         LoginOption(
           title: 'Sign in with Google'.tr(),
           iconPath: Assets.icons.googleIc,
         ),
+        SizedBox(height: 15.h),
         LoginOption(
           title: 'Sign in with Apple'.tr(),
           iconPath: Assets.icons.cibApple,

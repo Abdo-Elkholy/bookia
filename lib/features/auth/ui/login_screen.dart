@@ -49,17 +49,19 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: AppTextStyle.text30Regular,
                 ),
               ),
+              SizedBox(height: 32.h),
               AppTextFormField(
                 title: "email",
                 textInputType: TextInputType.emailAddress,
                 controller: emailController,
               ),
-              SizedBox(height: 40.h),
+              SizedBox(height: 15.h),
               AppTextFormField(
                 title: "password",
                 textInputType: TextInputType.visiblePassword,
                 controller: passWordController,
               ),
+              SizedBox(height: 13.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -74,6 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ],
               ),
+              SizedBox(height: 30.h),
               BlocListener<AuthCubit, AuthState>(
                 listener: (context, state) {
                   if (state is AuthLoadingState) {
@@ -106,8 +109,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                 ),
               ),
-
+              SizedBox(height: 34.h),
               LoginOptions(),
+              SizedBox(height: 40.h),
               AuthFooterWidget(
                 title: "Don’t have an account?".tr(),
                 action: "Register Now".tr(),

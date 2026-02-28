@@ -9,7 +9,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   String? token = prefs.getString("token");
-
   await Future.wait([
     ScreenUtil.ensureScreenSize(),
     EasyLocalization.ensureInitialized(),

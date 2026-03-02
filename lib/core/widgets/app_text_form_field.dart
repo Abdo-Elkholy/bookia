@@ -27,12 +27,6 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
   late bool visibility = isPassword(widget.textInputType);
 
   @override
-  void dispose() {
-    super.dispose();
-    widget.controller?.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: widget.controller,
@@ -57,7 +51,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
             : null,
         hint: Text(
           widget.title,
-          style: AppTextStyle.text15Regular.copyWith(color: Color(0xff8391A1)),
+          style: AppTextStyle.text15Regular.copyWith(color: AppColors.textGray),
         ),
         fillColor: AppColors.textFormFieldColor,
         filled: true,

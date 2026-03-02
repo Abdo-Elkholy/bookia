@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'app_colors.dart';
+
 class AppTextStyle {
   static TextStyle text14Regular = TextStyle(
-    fontSize: 15.sp,
+    fontSize: 14.sp,
     fontWeight: FontWeight.w400,
+    color: AppColors.textGray,
   );
   static TextStyle text15Regular = TextStyle(
     fontSize: 15.sp,

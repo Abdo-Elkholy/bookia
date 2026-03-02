@@ -1,10 +1,12 @@
+import 'package:bookia/features/auth/data/models/new_user_model.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepo {
   static final Dio _dio = Dio();
 
-  static Future<dynamic> getData(String email, String passWord) async {
+  static Future<dynamic> logIn(String email, String passWord) async {
     try {
       final response = await _dio.post(
         "https://codingarabic.online/api/login",
@@ -14,6 +16,30 @@ class AuthRepo {
         await saveToken(response.data["data"]["token"].toString());
         return true;
       } else {
+        return false;
+      }
+    } catch (e) {
+      return false;
+    }
+  }
+
+  static Future<dynamic> register(NewUserModel user) async {
+    try {
+      final Response response = await _dio.post(
+        "https://codingarabic.online/api/register",
+        data: {
+          "name": user.name,
+          "email": user.email,
+          "password": user.password,
+          "password_confirmation": user.passwordConfirmation,
+        },
+      );
+      if (response.statusCode == 201) {
+        await saveToken(response.data["data"]["token"].toString());
+        print(response.data.toString());
+        return true;
+      } else if (response.statusCode == 422) {
+        debugPrint("The email has already been taken.");
         return false;
       }
     } catch (e) {

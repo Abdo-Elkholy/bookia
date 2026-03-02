@@ -1,8 +1,8 @@
 import 'package:bookia/core/helper/extentions.dart';
 import 'package:bookia/core/theme/app_colors.dart';
 import 'package:bookia/core/theme/app_text_style.dart';
+import 'package:bookia/core/widgets/FooterWidget.dart';
 import 'package:bookia/core/widgets/main_app_button.dart';
-import 'package:bookia/features/auth/ui/widgets/auth_footer_widget.dart';
 import 'package:bookia/features/auth/ui/widgets/login_options.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -66,7 +66,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      context.pushNamedAndRemove(Routs.forgetPasswordScreen);
+                    },
                     child: Text(
                       "Forgot Password?".tr(),
                       style: AppTextStyle.text14Regular.copyWith(
@@ -112,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 34.h),
               LoginOptions(),
               SizedBox(height: 40.h),
-              AuthFooterWidget(
+              FooterWidget(
                 title: "Don’t have an account?".tr(),
                 action: "Register Now".tr(),
                 target: Routs.registerScreen,

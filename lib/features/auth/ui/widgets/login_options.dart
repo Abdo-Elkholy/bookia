@@ -9,7 +9,6 @@ import '../../../../gen/assets.gen.dart';
 
 class LoginOptions extends StatelessWidget {
   const LoginOptions({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -13,5 +13,8 @@
   "Login Now": "قم بتسجيل الدخول الأن",
   "Forgot Password?": "نسيت كلمة المرور؟",
   "Sign in with Google": "تسجيل الدخول بواسطة جوجل",
-  "Sign in with Apple": "تسجيل الدخول بواسطة ابل"
+  "Sign in with Apple": "تسجيل الدخول بواسطة ابل",
+  "Enter your email": "ادخل بريدك الالكتروني",
+  "Send Code": "أرسل الرمز",
+  "Don't worry! It occurs. Please enter the email address linked with your account.":"لا تقلق! هذا يحدث. يرجى إدخال عنوان البريد الإلكتروني المرتبط بحسابك."
 }

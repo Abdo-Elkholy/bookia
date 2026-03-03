@@ -4,6 +4,7 @@ import 'package:bookia/features/auth/ui/login_screen.dart';
 import 'package:bookia/features/auth/ui/register_screen.dart';
 import 'package:bookia/features/home/ui/screens/home_screen.dart';
 import 'package:bookia/features/on_boarding/ui/on_boarding_screen/on_boarding_screen.dart';
+import 'package:bookia/features/root/cubit/root_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,6 +12,7 @@ import '../../features/new_password/ui/screens/finish_screen.dart';
 import '../../features/new_password/ui/screens/forget_password_screen.dart';
 import '../../features/new_password/ui/screens/new_password_screen.dart';
 import '../../features/new_password/ui/screens/obt_screen.dart';
+import '../../features/root/ui/screens/root.dart';
 
 class AppRouter {
   static Route? generateRout(RouteSettings setting) {
@@ -41,6 +43,11 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => NewPasswordScreen());
       case Routs.finishScreen:
         return MaterialPageRoute(builder: (_) => FinishScreen());
+      case Routs.root:
+        return MaterialPageRoute(
+          builder: (_) =>
+              BlocProvider(create: (context) => RootCubit(), child: Root()),
+        );
 
       default:
         return MaterialPageRoute(

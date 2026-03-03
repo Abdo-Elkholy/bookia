@@ -101,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         builder: (context) => AlertDialog(title: Text("Error")),
                       );
                     } else if (state is AuthSuccessState) {
-                      context.pushNamedAndRemoveAll(Routs.homeScreen);
+                      context.pushNamedAndRemoveAll(Routs.root);
                     }
                   },
                   child: MainAppButton(

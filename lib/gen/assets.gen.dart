@@ -14,6 +14,21 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/Bookmark.svg
+  String get bookmark => 'assets/icons/Bookmark.svg';
+
+  /// File path: assets/icons/Category.svg
+  String get category => 'assets/icons/Category.svg';
+
+  /// File path: assets/icons/Frame 15.svg
+  String get frame15 => 'assets/icons/Frame 15.svg';
+
+  /// File path: assets/icons/Home.svg
+  String get home => 'assets/icons/Home.svg';
+
+  /// File path: assets/icons/Profile.svg
+  String get profile => 'assets/icons/Profile.svg';
+
   /// File path: assets/icons/Successmark.svg
   String get successmark => 'assets/icons/Successmark.svg';
 
@@ -26,8 +41,26 @@ class $AssetsIconsGen {
   /// File path: assets/icons/logo .svg
   String get logo => 'assets/icons/logo .svg';
 
+  /// File path: assets/icons/search.svg
+  String get search => 'assets/icons/search.svg';
+
+  /// File path: assets/icons/solar_camera-broken.svg
+  String get solarCameraBroken => 'assets/icons/solar_camera-broken.svg';
+
   /// List of all assets
-  List<String> get values => [successmark, cibApple, googleIc, logo];
+  List<String> get values => [
+    bookmark,
+    category,
+    frame15,
+    home,
+    profile,
+    successmark,
+    cibApple,
+    googleIc,
+    logo,
+    search,
+    solarCameraBroken,
+  ];
 }
 
 class $AssetsImagesGen {

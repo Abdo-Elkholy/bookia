@@ -5,8 +5,8 @@ sealed class HomeState {}
 
 final class HomeInitial extends HomeState {}
 
-final class IncrementState extends HomeState {}
+final class HomeLoadingState extends HomeState {}
 
-final class DecrementState extends HomeState {}
+final class HomeSuccessState extends HomeState {}
 
-final class Choos extends HomeState {}
+final class HomeFailedState extends HomeState {}

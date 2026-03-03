@@ -44,6 +44,7 @@ dependencies:
   shared_preferences: ^2.5.4
   pinput: ^6.0.2
   form_validator: ^2.1.1
+  carousel_slider: ^5.1.2
 
 dev_dependencies:
   build_runner:

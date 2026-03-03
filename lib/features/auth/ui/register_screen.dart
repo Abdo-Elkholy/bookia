@@ -99,7 +99,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             Center(child: CircularProgressIndicator()),
                       );
                     } else if (state is AuthSuccessState) {
-                      context.pushNamedAndRemove(Routs.homeScreen);
+                      context.pushNamedAndRemoveAll(Routs.root);
                     } else {
                       Navigator.pop(context);
                       showDialog(

@@ -5,23 +5,26 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SubScreensAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
-  final IconButton? icon;
-  const SubScreensAppBar({super.key, this.title, this.icon});
+  final Widget? icon;
+  final Widget? widget;
+  const SubScreensAppBar({super.key, this.title, this.icon, this.widget});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: EdgeInsets.only(right: 24.w, left: 24.w, top: 10.h),
+        padding: EdgeInsets.only(right: 22.w, left: 22.w, top: 5.h),
         child: AppBar(
           scrolledUnderElevation: 0,
           backgroundColor: Colors.white,
-          leading: GestureDetector(
-            child: Back_Button(),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
+          leading:
+              widget ??
+              GestureDetector(
+                child: Back_Button(),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
           centerTitle: true,
           title: title == null
               ? null

@@ -1,4 +1,5 @@
 import 'package:bookia/core/helper/extentions.dart';
+import 'package:bookia/core/helper/validation.dart';
 import 'package:bookia/core/theme/app_text_style.dart';
 import 'package:bookia/core/widgets/FooterWidget.dart';
 import 'package:bookia/features/auth/cubit/auth_state_cubit.dart';
@@ -7,6 +8,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:form_validator/form_validator.dart';
 
 import '../../../core/routing/routs.dart';
 import '../../../core/widgets/app_bar.dart';
@@ -36,85 +38,102 @@ class _RegisterScreenState extends State<RegisterScreen> {
     super.dispose();
   }
 
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: SubScreensAppBar(),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 22.w, vertical: 29.h),
-          child: Column(
-            children: [
-              SizedBox(height: 28.h),
-              Text(
-                "Hello! Register to get started".tr(),
-                style: AppTextStyle.text30Regular,
-              ),
-              SizedBox(height: 32.h),
-              AppTextFormField(title: "Username", controller: nameController),
-              SizedBox(height: 11.h),
-              AppTextFormField(
-                title: "Email",
-                textInputType: TextInputType.emailAddress,
-                controller: emailController,
-              ),
-              SizedBox(height: 11.h),
-              AppTextFormField(
-                title: "password",
-                textInputType: TextInputType.visiblePassword,
-                controller: passwordController,
-              ),
-              SizedBox(height: 11.h),
-              AppTextFormField(
-                title: "Confirm password",
-                textInputType: TextInputType.visiblePassword,
-                controller: confirmPasswordController,
-                hide: false,
-              ),
-              SizedBox(height: 30.h),
-              BlocListener<AuthCubit, AuthState>(
-                listener: (context, state) {
-                  if (state is AuthLoadingState) {
-                    showDialog(
-                      barrierDismissible: false,
-                      context: context,
-                      builder: (context) =>
-                          Center(child: CircularProgressIndicator()),
-                    );
-                  } else if (state is AuthSuccessState) {
-                    context.pushNamedAndRemove(Routs.homeScreen);
-                  } else {
-                    Navigator.pop(context);
-                    showDialog(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                        title: Text("Error"),
-                        content: Text("data"),
-                      ),
-                    );
-                  }
-                },
-                child: MainAppButton(
-                  title: "Register".tr(),
-                  onTap: () {
-                    newUser = NewUserModel(
-                      name: nameController.text,
-                      email: emailController.text,
-                      password: passwordController.text,
-                      passwordConfirmation: confirmPasswordController.text,
-                    );
-                    context.read<AuthCubit>().register(newUser);
-                  },
+        child: Form(
+          key: _formKey,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 22.w, vertical: 29.h),
+            child: Column(
+              children: [
+                SizedBox(height: 28.h),
+                Text(
+                  "Hello! Register to get started".tr(),
+                  style: AppTextStyle.text30Regular,
                 ),
-              ),
-              SizedBox(height: 150.h),
-              FooterWidget(
-                title: "Already have an account?".tr(),
-                action: "Login Now".tr(),
-                target: Routs.loginScreen,
-              ),
-            ],
+                SizedBox(height: 32.h),
+                AppTextFormField(
+                  title: "Username",
+                  controller: nameController,
+                  validator: ValidationBuilder(
+                    optional: false,
+                  ).required("This field is required").build(),
+                ),
+                SizedBox(height: 11.h),
+                AppTextFormField(
+                  title: "Email",
+                  textInputType: TextInputType.emailAddress,
+                  controller: emailController,
+                  validator: Validation.emailValidator(),
+                ),
+                SizedBox(height: 11.h),
+                AppTextFormField(
+                  title: "password",
+                  textInputType: TextInputType.visiblePassword,
+                  controller: passwordController,
+                  validator: Validation.newPasswordValidator(),
+                ),
+                SizedBox(height: 11.h),
+                AppTextFormField(
+                  title: "Confirm password",
+                  textInputType: TextInputType.visiblePassword,
+                  controller: confirmPasswordController,
+                  hide: false,
+                  validator: Validation.confirmPasswordValidator(
+                    passwordController,
+                  ),
+                ),
+                SizedBox(height: 30.h),
+                BlocListener<AuthCubit, AuthState>(
+                  listener: (context, state) {
+                    if (state is AuthLoadingState) {
+                      showDialog(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (context) =>
+                            Center(child: CircularProgressIndicator()),
+                      );
+                    } else if (state is AuthSuccessState) {
+                      context.pushNamedAndRemove(Routs.homeScreen);
+                    } else {
+                      Navigator.pop(context);
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text("Error"),
+                          content: Text("data"),
+                        ),
+                      );
+                    }
+                  },
+                  child: MainAppButton(
+                    title: "Register".tr(),
+                    onTap: () {
+                      if (_formKey.currentState!.validate()) {
+                        newUser = NewUserModel(
+                          name: nameController.text,
+                          email: emailController.text,
+                          password: passwordController.text,
+                          passwordConfirmation: confirmPasswordController.text,
+                        );
+                        context.read<AuthCubit>().register(newUser);
+                      }
+                    },
+                  ),
+                ),
+                SizedBox(height: 150.h),
+                FooterWidget(
+                  title: "Already have an account?".tr(),
+                  action: "Login Now".tr(),
+                  target: Routs.loginScreen,
+                ),
+              ],
+            ),
           ),
         ),
       ),

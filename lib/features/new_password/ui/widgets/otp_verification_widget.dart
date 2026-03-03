@@ -5,7 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinput/pinput.dart';
 
 class OtpVerificationWidget extends StatelessWidget {
-  OtpVerificationWidget({super.key});
+  final String? Function(String?) validator;
+  OtpVerificationWidget({super.key, required this.validator});
   final PinTheme _defaultPinTheme = PinTheme(
     textStyle: AppTextStyle.text20Regular,
     width: 48.w,
@@ -28,6 +29,7 @@ class OtpVerificationWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Pinput(
+          validator: validator,
           showCursor: false,
           separatorBuilder: (int i) => SizedBox(width: 7.w),
           length: 6,

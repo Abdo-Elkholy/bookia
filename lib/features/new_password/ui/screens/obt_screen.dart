@@ -2,6 +2,7 @@ import 'package:bookia/core/helper/extentions.dart';
 import 'package:bookia/features/new_password/ui/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:form_validator/form_validator.dart';
 
 import '../../../../core/routing/routs.dart';
 import '../../../../core/widgets/FooterWidget.dart';
@@ -10,40 +11,50 @@ import '../../../../core/widgets/main_app_button.dart';
 import '../widgets/otp_verification_widget.dart';
 
 class ObtScreen extends StatelessWidget {
-  const ObtScreen({super.key});
-
+  ObtScreen({super.key});
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: SubScreensAppBar(),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 22),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Header(
-                mainTitle: "OTP Verification",
-                subTitle:
-                    "Enter the verification code we just sent on your email address.",
-              ),
-              OtpVerificationWidget(),
+        child: Form(
+          key: _formKey,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 22),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Header(
+                  mainTitle: "OTP Verification",
+                  subTitle:
+                      "Enter the verification code we just sent on your email address.",
+                ),
+                OtpVerificationWidget(
+                  validator: ValidationBuilder()
+                      .maxLength(6)
+                      .minLength(6)
+                      .build(),
+                ),
 
-              SizedBox(height: 30.h),
-              MainAppButton(
-                title: "Verify",
-                onTap: () {
-                  context.pushNamedAndRemove(Routs.setNewPasswordScreen);
-                },
-              ),
-              SizedBox(height: 360.h),
-              FooterWidget(
-                title: 'Didn’t received code? ',
-                action: 'Resend',
-                target: Routs.forgetPasswordScreen,
-              ),
-            ],
+                SizedBox(height: 30.h),
+                MainAppButton(
+                  title: "Verify",
+                  onTap: () {
+                    if (_formKey.currentState!.validate()) {
+                      context.pushNamedAndRemove(Routs.setNewPasswordScreen);
+                    }
+                  },
+                ),
+                SizedBox(height: 360.h),
+                FooterWidget(
+                  title: 'Didn’t received code? ',
+                  action: 'Resend',
+                  target: Routs.forgetPasswordScreen,
+                ),
+              ],
+            ),
           ),
         ),
       ),

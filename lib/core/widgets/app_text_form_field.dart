@@ -7,8 +7,8 @@ class AppTextFormField extends StatefulWidget {
 
   /// to use with confirm password
   final bool hide;
-
   final String title;
+  final String? Function(String?)? validator;
   final TextEditingController? controller;
 
   const AppTextFormField({
@@ -16,6 +16,7 @@ class AppTextFormField extends StatefulWidget {
     this.textInputType = TextInputType.text,
     this.hide = true,
     required this.title,
+    required this.validator,
     this.controller,
   });
 
@@ -29,6 +30,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: widget.validator,
       controller: widget.controller,
       obscureText: visibility,
       keyboardType: widget.textInputType,

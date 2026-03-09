@@ -71,7 +71,7 @@ class LoginOption extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(iconPath),
+            SvgPicture.asset(iconPath, width: 20.w, height: 20.h),
             SizedBox(width: 10.w),
             Text(
               title,

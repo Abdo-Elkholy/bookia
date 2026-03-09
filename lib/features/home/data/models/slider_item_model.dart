@@ -1,13 +1,9 @@
 class SliderItemModel {
-  int statusCode;
-  List<Map<String, String>>? imgUrl;
+  List imgUrl = [];
 
-  SliderItemModel({required this.statusCode, required this.imgUrl});
+  SliderItemModel({required this.imgUrl});
 
   factory SliderItemModel.fromJson(Map json) {
-    return SliderItemModel(
-      statusCode: json["status"],
-      imgUrl: json["data"]["sliders"],
-    );
+    return SliderItemModel(imgUrl: json["data"]["sliders"]);
   }
 }

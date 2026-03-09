@@ -9,11 +9,13 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   String? token = prefs.getString("token");
+  // prefs.clear();
   await Future.wait([
     ScreenUtil.ensureScreenSize(),
     EasyLocalization.ensureInitialized(),
   ]);
 
+  //debugInvertOversizedImages = true;
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],

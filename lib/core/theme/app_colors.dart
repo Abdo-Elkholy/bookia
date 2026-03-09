@@ -10,4 +10,6 @@ class AppColors {
   static final Color textFormFieldColor = Color(0XFFF7F8F9);
   static final Color darkGray = Color(0xff6A707C);
   static final Color textGray = Color(0xff8391A1);
+  static final Color books = Color(0xffF5EFE1);
+  static final Color black = Color(0xff000000);
 }

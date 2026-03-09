@@ -48,13 +48,6 @@ class AppRouter {
           builder: (_) =>
               BlocProvider(create: (context) => RootCubit(), child: Root()),
         );
-
-      default:
-        return MaterialPageRoute(
-          builder: (_) {
-            return Scaffold(body: Center(child: Text("page not found")));
-          },
-        );
     }
   }
 }

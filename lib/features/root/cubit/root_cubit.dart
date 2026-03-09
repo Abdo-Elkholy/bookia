@@ -12,10 +12,10 @@ class RootCubit extends Cubit<RootState> {
 
   void onTap(int i) {
     selectedIndex = i;
+    emit(ChangeScreen());
   }
 
   Color select(int index) {
-    emit(ChangeScreen());
     if (selectedIndex == index) {
       return AppColors.primaryColor;
     } else {

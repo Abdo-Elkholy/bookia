@@ -1,28 +1,46 @@
 import 'package:bloc/bloc.dart';
+import 'package:bookia/features/home/data/models/product_model.dart';
 import 'package:bookia/features/home/data/models/slider_item_model.dart';
-import 'package:bookia/features/home/data/repo/slider_repo.dart';
 import 'package:flutter/material.dart';
+
+import '../data/repo/home_repo.dart';
 
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial());
 
-  Future x() async {
+  void getSliders() async {
     emit(HomeLoadingState());
-    List<String> s = [];
+    List<String> images = [];
     try {
-      SliderItemModel sliderItem = await SliderRepo().getData();
-      if (sliderItem.imgUrl != null) {
-        sliderItem.imgUrl?.forEach((item) {
-          s.add(item["image"]!);
-        });
-        emit(HomeSuccessState());
+      final data = await HomeRepo.getSliderData();
+      SliderItemModel sliderItem = SliderItemModel.fromJson(data);
+      if (sliderItem.imgUrl.isNotEmpty) {
+        for (var item in sliderItem.imgUrl) {
+          final image = item["image"];
+          if (image != null) images.add(image.toString());
+        }
+        emit(HomeSuccessState(images));
       }
-      return s;
     } catch (e) {
       emit(HomeFailedState());
-      throw ("oops there was an error");
+      throw ("oops there was an error2");
+    }
+  }
+
+  void getBestSellerData() async {
+    emit(BestSellerLoadingState());
+    try {
+      ProductsResponse product = await HomeRepo.getBooks();
+      if (product.data != null && product.data!.products != null) {
+        emit(BestSellerSuccessState(books: product.data?.products ?? []));
+      } else {
+        return null;
+      }
+    } catch (error) {
+      emit(BestSellerFailedState());
+      throw "error cubit";
     }
   }
 }

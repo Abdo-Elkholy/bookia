@@ -25,6 +25,8 @@ class Root extends StatelessWidget {
     const FinishScreen(),
   ];
 
+  const Root({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

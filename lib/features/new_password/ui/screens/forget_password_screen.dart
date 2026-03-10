@@ -50,7 +50,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                 SizedBox(height: 360.h),
                 FooterWidget(
                   title: 'Remember Password? ',
-                  action: 'Login',
+                  action: 'Login'.tr(),
                   target: Routs.loginScreen,
                 ),
               ],

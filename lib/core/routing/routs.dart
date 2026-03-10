@@ -9,4 +9,5 @@ class Routs {
   static const String setNewPasswordScreen = '/newPasswordScreen';
   static const String finishScreen = '/finishScreen';
   static const String root = '/root';
+  static const String bookDetailsScreen = '/BookDetailsScreen';
 }

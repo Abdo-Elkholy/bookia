@@ -27,7 +27,7 @@ class LoginOptions extends StatelessWidget {
               color: Colors.white,
               alignment: AlignmentGeometry.center,
               child: Text(
-                "or",
+                "or".tr(),
                 style: AppTextStyle.text14Regular.copyWith(
                   color: AppColors.darkGray,
                 ),

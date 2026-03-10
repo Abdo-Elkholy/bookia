@@ -10,7 +10,11 @@ part 'home_state.dart';
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial());
 
-  void getSliders() async {
+  Future<void> getHomeData() async {
+    await Future.wait([getBestSellerData(), getSliders()]);
+  }
+
+  Future<void> getSliders() async {
     emit(HomeLoadingState());
     List<String> images = [];
     try {
@@ -29,7 +33,7 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  void getBestSellerData() async {
+  Future<void> getBestSellerData() async {
     emit(BestSellerLoadingState());
     try {
       ProductsResponse product = await HomeRepo.getBooks();

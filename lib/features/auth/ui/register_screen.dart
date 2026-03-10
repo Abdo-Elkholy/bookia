@@ -58,29 +58,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 SizedBox(height: 32.h),
                 AppTextFormField(
-                  title: "Username",
+                  title: "Username".tr(),
                   controller: nameController,
                   validator: ValidationBuilder(
                     optional: false,
-                  ).required("This field is required").build(),
+                  ).required("This field is required".tr()).build(),
                 ),
                 SizedBox(height: 11.h),
                 AppTextFormField(
-                  title: "Email",
+                  title: "Email".tr(),
                   textInputType: TextInputType.emailAddress,
                   controller: emailController,
                   validator: Validation.emailValidator(),
                 ),
                 SizedBox(height: 11.h),
                 AppTextFormField(
-                  title: "password",
+                  title: "password".tr(),
                   textInputType: TextInputType.visiblePassword,
                   controller: passwordController,
                   validator: Validation.newPasswordValidator(),
                 ),
                 SizedBox(height: 11.h),
                 AppTextFormField(
-                  title: "Confirm password",
+                  title: "Confirm password".tr(),
                   textInputType: TextInputType.visiblePassword,
                   controller: confirmPasswordController,
                   hide: false,
@@ -105,8 +105,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
-                          title: Text("Error"),
-                          content: Text("data"),
+                          title: Text("Error".tr()),
+                          content: Text("data".tr()),
                         ),
                       );
                     }

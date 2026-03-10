@@ -3,6 +3,7 @@ import 'package:bookia/features/new_password/ui/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_validator/form_validator.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../../../../core/routing/routs.dart';
 import '../../../../core/widgets/FooterWidget.dart';
@@ -27,12 +28,13 @@ class ObtScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Header(
-                  mainTitle: "OTP Verification",
+                  mainTitle: "OTP Verification".tr(),
                   subTitle:
                       "Enter the verification code we just sent on your email address.",
                 ),
                 OtpVerificationWidget(
                   validator: ValidationBuilder()
+                      .required("This field is required".tr())
                       .maxLength(6)
                       .minLength(6)
                       .build(),
@@ -40,7 +42,7 @@ class ObtScreen extends StatelessWidget {
 
                 SizedBox(height: 30.h),
                 MainAppButton(
-                  title: "Verify",
+                  title: "Verify".tr(),
                   onTap: () {
                     if (_formKey.currentState!.validate()) {
                       context.pushNamedAndRemove(Routs.setNewPasswordScreen);
@@ -50,7 +52,7 @@ class ObtScreen extends StatelessWidget {
                 SizedBox(height: 360.h),
                 FooterWidget(
                   title: 'Didn’t received code? ',
-                  action: 'Resend',
+                  action: 'Resend'.tr(),
                   target: Routs.forgetPasswordScreen,
                 ),
               ],

@@ -1,16 +1,16 @@
+import 'package:bookia/core/networking/api_constants.dart';
+import 'package:bookia/core/networking/dio_factory.dart';
 import 'package:dio/dio.dart';
 
 import '../models/product_model.dart';
 
 class HomeRepo {
-  static final Dio _dio = Dio();
-
   static Future getSliderData() async {
     try {
-      Response response = await _dio.get(
-        "https://codingarabic.online/api/sliders",
+      Response<dynamic>? response = await DioFactory.dio?.get(
+        ApiConstants.sliderUrl,
       );
-      return response.data;
+      return response?.data;
     } catch (e) {
       throw ("oops there was an error ");
     }
@@ -18,11 +18,11 @@ class HomeRepo {
 
   static Future<ProductsResponse> getBooks() async {
     try {
-      Response response = await _dio.get(
-        "https://codingarabic.online/api/products-bestseller",
+      Response<dynamic>? response = await DioFactory.dio?.get(
+        ApiConstants.bestSellerUrl,
       );
 
-      return ProductsResponse.fromJson(response.data);
+      return ProductsResponse.fromJson(response?.data);
     } catch (error) {
       throw Exception(error);
     }

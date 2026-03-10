@@ -2,6 +2,7 @@ import 'package:bookia/core/routing/routs.dart';
 import 'package:bookia/features/auth/cubit/auth_state_cubit.dart';
 import 'package:bookia/features/auth/ui/login_screen.dart';
 import 'package:bookia/features/auth/ui/register_screen.dart';
+import 'package:bookia/features/home/ui/screens/book_details_screen.dart';
 import 'package:bookia/features/home/ui/screens/home_screen.dart';
 import 'package:bookia/features/on_boarding/ui/on_boarding_screen/on_boarding_screen.dart';
 import 'package:bookia/features/root/cubit/root_cubit.dart';
@@ -48,6 +49,8 @@ class AppRouter {
           builder: (_) =>
               BlocProvider(create: (context) => RootCubit(), child: Root()),
         );
+      case Routs.bookDetailsScreen:
+        return MaterialPageRoute(builder: (_) => BookDetailsScreen());
     }
   }
 }

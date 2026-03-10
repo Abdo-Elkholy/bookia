@@ -4,6 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'app_colors.dart';
 
 class AppTextStyle {
+  static TextStyle text12Regular = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.black,
+  );
   static TextStyle text14Regular = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w400,

@@ -55,14 +55,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: 32.h),
                 AppTextFormField(
-                  title: "email",
+                  title: "email".tr(),
                   textInputType: TextInputType.emailAddress,
                   controller: emailController,
                   validator: Validation.emailValidator(),
                 ),
                 SizedBox(height: 15.h),
                 AppTextFormField(
-                  title: "password",
+                  title: "password".tr(),
                   textInputType: TextInputType.visiblePassword,
                   controller: passWordController,
                   validator: Validation.passwordValidator(),
@@ -98,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.pop(context);
                       showDialog(
                         context: context,
-                        builder: (context) => AlertDialog(title: Text("Error")),
+                        builder: (context) => AlertDialog(title: Text("Error".tr())),
                       );
                     } else if (state is AuthSuccessState) {
                       context.pushNamedAndRemoveAll(Routs.root);

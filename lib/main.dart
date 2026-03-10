@@ -4,8 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'bookia_app.dart';
+import 'core/networking/dio_factory.dart';
 
 void main() async {
+  DioFactory.startApp();
   WidgetsFlutterBinding.ensureInitialized();
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   String? token = prefs.getString("token");

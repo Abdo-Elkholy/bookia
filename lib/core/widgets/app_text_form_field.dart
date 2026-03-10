@@ -51,12 +51,12 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
                     ? Icon(
                         Icons.visibility_off,
                         color: AppColors.darkGray,
-                        size: 15.sp,
+                        size: 17.sp,
                       )
                     : Icon(
                         Icons.visibility,
                         color: AppColors.darkGray,
-                        size: 15.sp,
+                        size: 17.sp,
                       ),
               )
             : null,

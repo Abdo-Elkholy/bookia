@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -24,14 +25,14 @@ class FinishScreen extends StatelessWidget {
               SvgPicture.asset(Assets.icons.successmark, height: 100),
               Header(
                 alignment: CrossAxisAlignment.center,
-                mainTitle: "Password Changed!",
-                subTitle: "Your password has been changed successfully.",
+                mainTitle: "Password Changed!".tr(),
+                subTitle: "Your password has been changed successfully.".tr(),
               ),
 
               MainAppButton(
-                title: "Back to Login",
+                title: "Back to Login".tr(),
                 onTap: () {
-                  context.pushNamedAndRemove(Routs.loginScreen);
+                  context.pushNamedAndRemove(Routs.onBoardingScreen);
                 },
               ),
             ],

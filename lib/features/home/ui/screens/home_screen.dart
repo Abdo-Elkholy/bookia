@@ -1,9 +1,12 @@
 import 'package:bookia/features/home/cubit/home_cubit.dart';
 import 'package:bookia/features/home/ui/widgets/home_app_bar.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
+import '../../../../core/theme/app_text_style.dart';
 import '../widgets/best_seller_builder.dart';
 import '../widgets/failed_state_widget.dart';
 import '../widgets/slider_builder.dart';
@@ -15,13 +18,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) {
-        final cubit = HomeCubit();
-        cubit.getSliders();
-        cubit.getBestSellerData();
-
-        return cubit;
-      },
+      create: (context) => HomeCubit()..getHomeData(),
       child: Padding(
         padding: const EdgeInsets.only(top: 15, right: 15, left: 15),
         child: CustomScrollView(
@@ -33,11 +30,19 @@ class HomeScreen extends StatelessWidget {
                   HomeAppBar(),
                   SizedBox(height: 25.h),
                   BlocBuilder<HomeCubit, HomeState>(
+                    buildWhen: (prv, current) =>
+                        current is HomeSuccessState ||
+                        current is HomeFailedState ||
+                        current is HomeLoadingState,
                     builder: (context, state) {
                       if (state is HomeLoadingState) {
-                        return SizedBox(
-                          height: 170.h,
-                          child: Center(child: CircularProgressIndicator()),
+                        return Skeletonizer(
+                          enabled: true,
+                          child: Container(
+                            height: 170.h,
+                            width: double.infinity,
+                            color: Colors.red,
+                          ),
                         );
                       } else if (state is HomeSuccessState) {
                         return SliderBuilder(
@@ -52,10 +57,20 @@ class HomeScreen extends StatelessWidget {
                           },
                         );
                       } else {
-                        return Text("oops there was an error 88");
+                        return Text("oops there was an error 88".tr());
                       }
                     },
                   ),
+                  SizedBox(height: 15.h),
+                  Row(
+                    children: [
+                      Text(
+                        "Best Seller".tr(),
+                        style: AppTextStyle.text24Regular,
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 15.h),
                 ],
               ),
             ),

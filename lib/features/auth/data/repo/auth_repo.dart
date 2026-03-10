@@ -1,19 +1,19 @@
+import 'package:bookia/core/networking/api_constants.dart';
+import 'package:bookia/core/networking/dio_factory.dart';
 import 'package:bookia/features/auth/data/models/new_user_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepo {
-  static final Dio _dio = Dio();
-
   static Future<dynamic> logIn(String email, String passWord) async {
     try {
-      final response = await _dio.post(
-        "https://codingarabic.online/api/login",
+      final response = await DioFactory.dio?.post(
+        ApiConstants.loginUrl,
         data: {"email": email, "password": passWord},
       );
-      if (response.statusCode == 200) {
-        await saveToken(response.data["data"]["token"].toString());
+      if (response?.statusCode == 200) {
+        await saveToken(response!.data["data"]["token"].toString());
         return true;
       } else {
         return false;
@@ -25,8 +25,8 @@ class AuthRepo {
 
   static Future<dynamic> register(NewUserModel user) async {
     try {
-      final Response response = await _dio.post(
-        "https://codingarabic.online/api/register",
+      final Response<dynamic>? response = await DioFactory.dio?.post(
+        ApiConstants.registerUrl,
         data: {
           "name": user.name,
           "email": user.email,
@@ -34,11 +34,10 @@ class AuthRepo {
           "password_confirmation": user.passwordConfirmation,
         },
       );
-      if (response.statusCode == 201) {
-        await saveToken(response.data["data"]["token"].toString());
-        print(response.data.toString());
+      if (response?.statusCode == 201) {
+        await saveToken(response!.data["data"]["token"].toString());
         return true;
-      } else if (response.statusCode == 422) {
+      } else if (response?.statusCode == 422) {
         debugPrint("The email has already been taken.");
         return false;
       }

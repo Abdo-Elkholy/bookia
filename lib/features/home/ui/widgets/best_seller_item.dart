@@ -1,9 +1,12 @@
+import 'package:bookia/core/helper/extentions.dart';
 import 'package:bookia/core/theme/app_colors.dart';
 import 'package:bookia/core/theme/app_text_style.dart';
 import 'package:bookia/features/home/data/models/product_model.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/routing/routs.dart';
 import '../../../../core/widgets/network_image.dart';
 import 'book_widget.dart';
 
@@ -36,14 +39,26 @@ class BestSellerItem extends StatelessWidget {
             ),
             Expanded(
               child: Text(
-                book.name ?? "error",
+                book.name ?? "Error".tr(),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: AppTextStyle.text18Regular,
               ),
             ),
 
-            BookWidget(price: book.price!),
+            BookWidget(
+              price: book.price!,
+              onTap: () {
+                context.pushNamed(Routs.bookDetailsScreen);
+              },
+              action: "Buy".tr(),
+              height: 4.h,
+              priceStyle: AppTextStyle.text15Regular,
+              actionStyle: AppTextStyle.text14Regular.copyWith(
+                color: AppColors.appWhite,
+              ),
+              flex: 2,
+            ),
             SizedBox(height: 11.h),
           ],
         ),

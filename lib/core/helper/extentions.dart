@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 extension Navigation on BuildContext {
-  Future<Object?> pushNamed(String route) {
-    return Navigator.of(this).pushNamed(route);
+  Future<Object?> pushNamed(String route, {Object? arguments}) {
+    return Navigator.of(this).pushNamed(route, arguments: arguments);
   }
 
   Future<Object?> pushNamedAndRemove(String newRoute) {

@@ -17,7 +17,7 @@ void main() async {
     EasyLocalization.ensureInitialized(),
   ]);
 
-  //debugInvertOversizedImages = true;
+  debugInvertOversizedImages = true;
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],

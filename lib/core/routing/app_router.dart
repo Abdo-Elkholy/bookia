@@ -9,6 +9,7 @@ import 'package:bookia/features/root/cubit/root_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../features/home/data/models/product_model.dart';
 import '../../features/new_password/ui/screens/finish_screen.dart';
 import '../../features/new_password/ui/screens/forget_password_screen.dart';
 import '../../features/new_password/ui/screens/new_password_screen.dart';
@@ -50,7 +51,8 @@ class AppRouter {
               BlocProvider(create: (context) => RootCubit(), child: Root()),
         );
       case Routs.bookDetailsScreen:
-        return MaterialPageRoute(builder: (_) => BookDetailsScreen());
+        final book = setting.arguments as Product;
+        return MaterialPageRoute(builder: (_) => BookDetailsScreen(book: book));
     }
   }
 }

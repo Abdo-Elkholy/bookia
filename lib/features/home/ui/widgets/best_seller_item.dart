@@ -49,7 +49,7 @@ class BestSellerItem extends StatelessWidget {
             BookWidget(
               price: book.price!,
               onTap: () {
-                context.pushNamed(Routs.bookDetailsScreen);
+                context.pushNamed(Routs.bookDetailsScreen, arguments: book);
               },
               action: "Buy".tr(),
               height: 4.h,

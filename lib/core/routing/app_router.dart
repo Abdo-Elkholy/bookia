@@ -6,6 +6,7 @@ import 'package:bookia/features/home/ui/screens/book_details_screen.dart';
 import 'package:bookia/features/home/ui/screens/home_screen.dart';
 import 'package:bookia/features/on_boarding/ui/on_boarding_screen/on_boarding_screen.dart';
 import 'package:bookia/features/root/cubit/root_cubit.dart';
+import 'package:bookia/features/search/ui/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -53,6 +54,8 @@ class AppRouter {
       case Routs.bookDetailsScreen:
         final book = setting.arguments as Product;
         return MaterialPageRoute(builder: (_) => BookDetailsScreen(book: book));
+      case Routs.searchScreen:
+        return MaterialPageRoute(builder: (_) => SearchScreen());
     }
   }
 }

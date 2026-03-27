@@ -30,7 +30,7 @@ class BestSellerItem extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(10.r),
               child: NetworkImageWidget(
-                url: book.image!,
+                url: book.image ?? "null",
                 width: 140.w,
                 height: 173.h,
                 memCacheWidth: 498,
@@ -47,7 +47,7 @@ class BestSellerItem extends StatelessWidget {
             ),
 
             BookWidget(
-              price: book.price!,
+              price: book.price ?? "error",
               onTap: () {
                 context.pushNamed(Routs.bookDetailsScreen, arguments: book);
               },

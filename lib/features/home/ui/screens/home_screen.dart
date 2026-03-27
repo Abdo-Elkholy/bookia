@@ -74,7 +74,46 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            BestSellerBuilder(),
+            BlocBuilder<HomeCubit, HomeState>(
+              buildWhen: (prev, current) =>
+                  current is BestSellerSuccessState ||
+                  current is BestSellerFailedState ||
+                  current is BestSellerLoadingState,
+              builder: (context, state) {
+                if (state is BestSellerLoadingState) {
+                  return BestSellerBuilder(
+                    books: [],
+                    isLoading: true,
+                    onTap: () {
+                      context.read<HomeCubit>().getBestSellerData();
+                    },
+                    isFailed: false,
+                  );
+                } else if (state is BestSellerSuccessState) {
+                  return BestSellerBuilder(
+                    books: state.books,
+                    isLoading: false,
+                    onTap: () {
+                      context.read<HomeCubit>().getBestSellerData();
+                    },
+                    isFailed: false,
+                  );
+                } else if (state is BestSellerFailedState) {
+                  return BestSellerBuilder(
+                    books: [],
+                    isLoading: false,
+                    onTap: () {
+                      context.read<HomeCubit>().getBestSellerData();
+                    },
+                    isFailed: true,
+                  );
+                } else {
+                  return SliverToBoxAdapter(
+                    child: Text("oops there was an error 88".tr()),
+                  );
+                }
+              },
+            ),
           ],
         ),
       ),

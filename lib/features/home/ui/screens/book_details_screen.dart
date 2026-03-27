@@ -40,10 +40,13 @@ class BookDetailsScreen extends StatelessWidget {
                     ),
 
                     SizedBox(height: 20.h),
-                    Text(book.name!, style: AppTextStyle.text30Regular),
+                    Text(
+                      book.name ?? "Unknown",
+                      style: AppTextStyle.text30Regular,
+                    ),
                     SizedBox(height: 15.h),
                     Text(
-                      book.name!,
+                      book.name ?? "Unknown",
                       style: AppTextStyle.text15Regular.copyWith(
                         color: AppColors.primaryColor,
                       ),

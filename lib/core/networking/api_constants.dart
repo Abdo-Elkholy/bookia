@@ -4,4 +4,5 @@ class ApiConstants {
   static const String bestSellerUrl = "$baseUrl/products-bestseller";
   static const String loginUrl = "$baseUrl/login";
   static const String registerUrl = "$baseUrl/register";
+  static const String searchUrl = "$baseUrl/products-search?name=";
 }

@@ -1,3 +1,5 @@
+import 'package:bookia/core/helper/extentions.dart';
+import 'package:bookia/core/routing/routs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -12,7 +14,12 @@ class HomeAppBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         SvgPicture.asset(Assets.icons.logo, width: 100),
-        SvgPicture.asset(Assets.icons.search, width: 25),
+        GestureDetector(
+          onTap: () {
+            context.pushNamed(Routs.searchScreen);
+          },
+          child: SvgPicture.asset(Assets.icons.search, width: 25),
+        ),
       ],
     );
   }

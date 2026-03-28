@@ -2,8 +2,8 @@ import 'package:bookia/core/theme/app_colors.dart';
 import 'package:bookia/features/home/ui/screens/home_screen.dart';
 import 'package:bookia/features/new_password/ui/screens/finish_screen.dart';
 import 'package:bookia/features/new_password/ui/screens/forget_password_screen.dart';
-import 'package:bookia/features/new_password/ui/screens/new_password_screen.dart';
 import 'package:bookia/features/root/cubit/root_cubit.dart';
+import 'package:bookia/features/wishlist/ui/screens/wishlist_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,7 +20,7 @@ class Root extends StatelessWidget {
   ];
   static final List<Widget> screens = [
     const HomeScreen(),
-    const NewPasswordScreen(),
+    const WishlistScreen(),
     ForgetPasswordScreen(),
     const FinishScreen(),
   ];
@@ -72,3 +72,4 @@ class Root extends StatelessWidget {
     );
   }
 }
+

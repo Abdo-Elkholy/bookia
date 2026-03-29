@@ -1,9 +1,7 @@
 import 'package:bookia/core/routing/app_router.dart';
 import 'package:bookia/core/routing/routs.dart';
-import 'package:bookia/features/wishlist/cubit/wishlist_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BookiaApp extends StatelessWidget {
@@ -12,20 +10,17 @@ class BookiaApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => WishlistCubit()..getBooks(),
-      child: ScreenUtilInit(
-        designSize: const Size(375, 812),
-        minTextAdapt: true,
-        splitScreenMode: true,
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
-          onGenerateRoute: AppRouter.generateRout,
-          initialRoute: startScreen(),
-        ),
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        onGenerateRoute: AppRouter.generateRout,
+        initialRoute: startScreen(),
       ),
     );
   }

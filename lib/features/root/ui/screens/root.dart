@@ -3,6 +3,7 @@ import 'package:bookia/features/home/ui/screens/home_screen.dart';
 import 'package:bookia/features/new_password/ui/screens/finish_screen.dart';
 import 'package:bookia/features/new_password/ui/screens/forget_password_screen.dart';
 import 'package:bookia/features/root/cubit/root_cubit.dart';
+import 'package:bookia/features/wishlist/cubit/wishlist_cubit.dart';
 import 'package:bookia/features/wishlist/ui/screens/wishlist_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,56 +19,65 @@ class Root extends StatelessWidget {
     Assets.icons.category,
     Assets.icons.profile,
   ];
-  static final List<Widget> screens = [
-    const HomeScreen(),
-    const WishlistScreen(),
-    ForgetPasswordScreen(),
-    const FinishScreen(),
-  ];
 
   const Root({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.appWhite,
-
-      body: BlocBuilder<RootCubit, RootState>(
-        builder: (context, state) {
-          return SafeArea(
-            child: IndexedStack(
-              index: context.read<RootCubit>().selectedIndex,
-              children: screens,
+    return BlocProvider(
+      create: (_) => WishlistCubit()..getBooks(),
+      child: Builder(
+        builder: (context) {
+          return Scaffold(
+            backgroundColor: AppColors.appWhite,
+            body: BlocBuilder<RootCubit, RootState>(
+              builder: (context, state) {
+                final screens = [
+                  const HomeScreen(),
+                  const WishlistScreen(),
+                  ForgetPasswordScreen(),
+                  const FinishScreen(),
+                ];
+                return SafeArea(
+                  child: IndexedStack(
+                    index: context.read<RootCubit>().selectedIndex,
+                    children: screens,
+                  ),
+                );
+              },
+            ),
+            bottomNavigationBar: BottomAppBar(
+              color: AppColors.appWhite,
+              elevation: 0,
+              height: 65.h,
+              child: BlocBuilder<RootCubit, RootState>(
+                builder: (context, state) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: List.generate(
+                      icons.length,
+                      (i) => GestureDetector(
+                        child: SvgPicture.asset(
+                          icons[i],
+                          colorFilter: ColorFilter.mode(
+                            context.read<RootCubit>().select(i),
+                            BlendMode.srcIn,
+                          ),
+                        ),
+                        onTap: () {
+                          context.read<RootCubit>().onTap(i);
+                          if (i == 1) {
+                            context.read<WishlistCubit>().getBooks();
+                          }
+                        },
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
           );
         },
-      ),
-      bottomNavigationBar: BottomAppBar(
-        color: AppColors.appWhite,
-        elevation: 0,
-        height: 65.h,
-        child: BlocBuilder<RootCubit, RootState>(
-          builder: (context, state) {
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: List.generate(
-                icons.length,
-                (i) => GestureDetector(
-                  child: SvgPicture.asset(
-                    icons[i],
-                    colorFilter: ColorFilter.mode(
-                      context.read<RootCubit>().select(i),
-                      BlendMode.srcIn,
-                    ),
-                  ),
-                  onTap: () {
-                    context.read<RootCubit>().onTap(i);
-                  },
-                ),
-              ),
-            );
-          },
-        ),
       ),
     );
   }

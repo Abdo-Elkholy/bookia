@@ -16,6 +16,19 @@ class BookDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => WishlistCubit()..getBooks(),
+      child: _BookDetailsBody(book: book),
+    );
+  }
+}
+
+class _BookDetailsBody extends StatelessWidget {
+  final Product book;
+  const _BookDetailsBody({required this.book});
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.appWhite,
       appBar: SubScreensAppBar(

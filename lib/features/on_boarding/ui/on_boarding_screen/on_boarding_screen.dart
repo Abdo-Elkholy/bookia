@@ -19,7 +19,11 @@ class OnBoardingScreen extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.fill,
-            image: AssetImage(Assets.images.splashBackground.path),
+            image: ResizeImage(
+              AssetImage(Assets.images.splashBackground.path),
+              width: 1080,
+              height: 2340,
+            ),
           ),
         ),
         child: Column(

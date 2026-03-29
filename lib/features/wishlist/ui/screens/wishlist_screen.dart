@@ -11,7 +11,6 @@ class WishlistScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<WishlistCubit>().getBooks();
     return Scaffold(
       backgroundColor: AppColors.appWhite,
       body: Padding(

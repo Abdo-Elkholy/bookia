@@ -16,6 +16,7 @@ void main() async {
   await Hive.openBox<WishlistBook>('wishlistBox');
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   String? token = prefs.getString("token");
+  prefs.clear();
   await Future.wait([
     ScreenUtil.ensureScreenSize(),
     EasyLocalization.ensureInitialized(),
@@ -32,4 +33,3 @@ void main() async {
     ),
   );
 }
-

@@ -108,8 +108,13 @@ class HomeScreen extends StatelessWidget {
                     isFailed: true,
                   );
                 } else {
-                  return SliverToBoxAdapter(
-                    child: Text("oops there was an error 88".tr()),
+                  return BestSellerBuilder(
+                    books: [],
+                    isLoading: true,
+                    onTap: () {
+                      context.read<HomeCubit>().getBestSellerData();
+                    },
+                    isFailed: true,
                   );
                 }
               },

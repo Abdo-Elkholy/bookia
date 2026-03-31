@@ -11,54 +11,51 @@ class WishlistScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.appWhite,
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
-        child: Column(
-          children: [
-            SizedBox(height: 10.h),
-            Text('Wishlist', style: AppTextStyle.text24Regular),
-            SizedBox(height: 20.h),
-            Expanded(
-              child: BlocBuilder<WishlistCubit, WishlistState>(
-                builder: (context, state) {
-                  if (state is WishlistLoaded) {
-                    if (state.books.isEmpty) {
-                      return Center(
-                        child: Text(
-                          'No books in your wishlist yet',
-                          style: AppTextStyle.text18Regular.copyWith(
-                            color: AppColors.darkGray,
-                          ),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
+      child: Column(
+        children: [
+          SizedBox(height: 10.h),
+          Text('Wishlist', style: AppTextStyle.text24Regular),
+          SizedBox(height: 20.h),
+          Expanded(
+            child: BlocBuilder<WishlistCubit, WishlistState>(
+              builder: (context, state) {
+                if (state is WishlistLoaded) {
+                  if (state.books.isEmpty) {
+                    return Center(
+                      child: Text(
+                        'No books in your wishlist yet',
+                        style: AppTextStyle.text18Regular.copyWith(
+                          color: AppColors.darkGray,
                         ),
-                      );
-                    }
-                    return GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 15.w,
-                        mainAxisSpacing: 15.h,
-                        childAspectRatio: 0.62,
                       ),
-                      itemCount: state.books.length,
-                      itemBuilder: (context, index) {
-                        final book = state.books[index];
-                        return WishlistItem(
-                          book: book,
-                          onRemove: () {
-                            context.read<WishlistCubit>().removeBook(book.id);
-                          },
-                        );
-                      },
                     );
                   }
-                  return const SizedBox.shrink();
-                },
-              ),
+                  return GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 15.w,
+                      mainAxisSpacing: 15.h,
+                      childAspectRatio: 0.62,
+                    ),
+                    itemCount: state.books.length,
+                    itemBuilder: (context, index) {
+                      final book = state.books[index];
+                      return WishlistItem(
+                        book: book,
+                        onRemove: () {
+                          context.read<WishlistCubit>().removeBook(book.id);
+                        },
+                      );
+                    },
+                  );
+                }
+                return const SizedBox.shrink();
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

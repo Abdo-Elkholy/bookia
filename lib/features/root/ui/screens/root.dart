@@ -1,7 +1,6 @@
 import 'package:bookia/core/theme/app_colors.dart';
 import 'package:bookia/features/home/ui/screens/home_screen.dart';
 import 'package:bookia/features/new_password/ui/screens/finish_screen.dart';
-import 'package:bookia/features/new_password/ui/screens/forget_password_screen.dart';
 import 'package:bookia/features/root/cubit/root_cubit.dart';
 import 'package:bookia/features/wishlist/cubit/wishlist_cubit.dart';
 import 'package:bookia/features/wishlist/ui/screens/wishlist_screen.dart';
@@ -11,6 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../gen/assets.gen.dart';
+import '../../../cart/ui/screens/cart_screen.dart';
 
 class Root extends StatelessWidget {
   static final List<String> icons = [
@@ -35,7 +35,7 @@ class Root extends StatelessWidget {
                 final screens = [
                   const HomeScreen(),
                   const WishlistScreen(),
-                  ForgetPasswordScreen(),
+                  const CartScreen(),
                   const FinishScreen(),
                 ];
                 return SafeArea(
@@ -82,4 +82,3 @@ class Root extends StatelessWidget {
     );
   }
 }
-

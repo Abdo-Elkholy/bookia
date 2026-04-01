@@ -11,9 +11,10 @@ class CartScreen extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(height: 10.h),
-          Text('Cart', style: AppTextStyle.text24Regular),
+          Center(child: Text('My Cart', style: AppTextStyle.text24Regular)),
           SizedBox(height: 20.h),
         ],
       ),

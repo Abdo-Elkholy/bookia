@@ -20,6 +20,8 @@ class WishlistScreen extends StatelessWidget {
           SizedBox(height: 20.h),
           Expanded(
             child: BlocBuilder<WishlistCubit, WishlistState>(
+              buildWhen: (prev, current) =>
+                  current is WishlistLoaded || current is WishlistUpdated,
               builder: (context, state) {
                 if (state is WishlistLoaded) {
                   if (state.books.isEmpty) {

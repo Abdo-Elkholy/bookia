@@ -18,11 +18,14 @@ class WishlistBook extends HiveObject {
   @HiveField(3)
   final String image;
 
+  @HiveField(4, defaultValue: '')
+  final String description;
   WishlistBook({
     required this.id,
     required this.name,
     required this.price,
     required this.image,
+    required this.description,
   });
 
   factory WishlistBook.fromProduct(Product product) {
@@ -31,6 +34,7 @@ class WishlistBook extends HiveObject {
       name: product.name ?? 'Unknown',
       price: product.price ?? '0',
       image: product.image ?? '',
+      description: product.description ?? "",
     );
   }
 }

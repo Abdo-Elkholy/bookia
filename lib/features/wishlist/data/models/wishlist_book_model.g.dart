@@ -15,13 +15,14 @@ class WishlistBookAdapter extends TypeAdapter<WishlistBook> {
       name: fields[1] as String,
       price: fields[2] as String,
       image: fields[3] as String,
+      description: fields[4] == null ? '' : fields[4] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, WishlistBook obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -29,7 +30,9 @@ class WishlistBookAdapter extends TypeAdapter<WishlistBook> {
       ..writeByte(2)
       ..write(obj.price)
       ..writeByte(3)
-      ..write(obj.image);
+      ..write(obj.image)
+      ..writeByte(4)
+      ..write(obj.description);
   }
 
   @override

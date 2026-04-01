@@ -12,10 +12,17 @@ import '../widgets/book_widget.dart';
 
 class BookDetailsScreen extends StatelessWidget {
   final Product book;
-  const BookDetailsScreen({super.key, required this.book});
+  final WishlistCubit? wishlistCubit;
+  const BookDetailsScreen({super.key, required this.book, this.wishlistCubit});
 
   @override
   Widget build(BuildContext context) {
+    if (wishlistCubit != null) {
+      return BlocProvider.value(
+        value: wishlistCubit!,
+        child: _BookDetailsBody(book: book),
+      );
+    }
     return BlocProvider(
       create: (_) => WishlistCubit()..getBooks(),
       child: _BookDetailsBody(book: book),
@@ -34,7 +41,9 @@ class _BookDetailsBody extends StatelessWidget {
       appBar: SubScreensAppBar(
         icon: BlocBuilder<WishlistCubit, WishlistState>(
           builder: (context, state) {
-            final isSaved = context.read<WishlistCubit>().isInWishlist(book.id ?? 0);
+            final isSaved = context.read<WishlistCubit>().isInWishlist(
+              book.id ?? 0,
+            );
             return GestureDetector(
               onTap: () {
                 if (isSaved) {
@@ -113,4 +122,3 @@ class _BookDetailsBody extends StatelessWidget {
     );
   }
 }
-

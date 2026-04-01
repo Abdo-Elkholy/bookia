@@ -9,6 +9,7 @@ import 'package:bookia/features/root/cubit/root_cubit.dart';
 import 'package:bookia/features/search/ui/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bookia/features/wishlist/cubit/wishlist_cubit.dart';
 
 import '../../features/home/data/models/product_model.dart';
 import '../../features/new_password/ui/screens/finish_screen.dart';
@@ -52,6 +53,15 @@ class AppRouter {
               BlocProvider(create: (context) => RootCubit(), child: Root()),
         );
       case Routs.bookDetailsScreen:
+        if (setting.arguments is Map) {
+          final args = setting.arguments as Map;
+          return MaterialPageRoute(
+            builder: (_) => BookDetailsScreen(
+              book: args['book'] as Product,
+              wishlistCubit: args['wishlistCubit'],
+            ),
+          );
+        }
         final book = setting.arguments as Product;
         return MaterialPageRoute(builder: (_) => BookDetailsScreen(book: book));
       case Routs.searchScreen:

@@ -11,4 +11,5 @@ class Routs {
   static const String root = '/root';
   static const String bookDetailsScreen = '/BookDetailsScreen';
   static const String searchScreen = '/SearchScreen';
+  static const String checkoutScreen = '/CheckoutScreen';
 }

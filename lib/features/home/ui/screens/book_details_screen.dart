@@ -1,7 +1,11 @@
+import 'package:bookia/core/helper/extentions.dart';
+import 'package:bookia/core/routing/routs.dart';
 import 'package:bookia/core/theme/app_colors.dart';
 import 'package:bookia/core/theme/app_text_style.dart';
 import 'package:bookia/core/widgets/network_image.dart';
+import 'package:bookia/features/cart/cubit/cart_cubit.dart';
 import 'package:bookia/features/wishlist/cubit/wishlist_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,11 +24,17 @@ class BookDetailsScreen extends StatelessWidget {
     if (wishlistCubit != null) {
       return BlocProvider.value(
         value: wishlistCubit!,
-        child: _BookDetailsBody(book: book),
+        child: BlocProvider(
+          create: (_) => CartCubit(),
+          child: _BookDetailsBody(book: book),
+        ),
       );
     }
-    return BlocProvider(
-      create: (_) => WishlistCubit()..getBooks(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => WishlistCubit()..getBooks()),
+        BlocProvider(create: (_) => CartCubit()),
+      ],
       child: _BookDetailsBody(book: book),
     );
   }
@@ -101,20 +111,50 @@ class _BookDetailsBody extends StatelessWidget {
             ),
             SizedBox(height: 10.h),
 
-            Column(
-              children: [
-                BookWidget(
-                  price: book.price!,
-                  onTap: () {},
-                  action: 'Add To Cart',
-                  height: 15.h,
-                  priceStyle: AppTextStyle.text24Regular,
-                  actionStyle: AppTextStyle.text20Regular.copyWith(
-                    color: AppColors.appWhite,
+            BlocListener<CartCubit, CartState>(
+              listener: (context, state) {
+                if (state is CartLoading) {
+                  showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (context) =>
+                        Center(child: CircularProgressIndicator()),
+                  );
+                } else if (state is CartSuccess) {
+                  Navigator.pop(context);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text("Added to cart successfully".tr()),
+                      backgroundColor: AppColors.primaryColor,
+                    ),
+                  );
+                } else if (state is CartFailed) {
+                  Navigator.pop(context);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text("Failed to add to cart".tr()),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
+                }
+              },
+              child: Column(
+                children: [
+                  BookWidget(
+                    price: book.price!,
+                    onTap: () {
+                      context.read<CartCubit>().addToCart(book.id ?? 0);
+                    },
+                    action: 'Add To Cart'.tr(),
+                    height: 15.h,
+                    priceStyle: AppTextStyle.text24Regular,
+                    actionStyle: AppTextStyle.text20Regular.copyWith(
+                      color: AppColors.appWhite,
+                    ),
+                    flex: 3,
                   ),
-                  flex: 3,
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),

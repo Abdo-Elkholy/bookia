@@ -42,4 +42,26 @@ class Validation {
       }
     }).build();
   }
+
+  static String? Function(String?) fullNameValidator() {
+    return ValidationBuilder()
+        .required("This field is required".tr())
+        .minLength(3, "Name must be at least 3 characters".tr())
+        .build();
+  }
+
+  static String? Function(String?) addressValidator() {
+    return ValidationBuilder()
+        .required("This field is required".tr())
+        .minLength(5, "Address must be at least 5 characters".tr())
+        .build();
+  }
+
+  static String? Function(String?) phoneValidator() {
+    return ValidationBuilder()
+        .required("This field is required".tr())
+        .phone("Invalid phone number".tr())
+        .build();
+  }
 }
+

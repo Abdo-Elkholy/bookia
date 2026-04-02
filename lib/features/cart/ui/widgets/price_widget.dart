@@ -9,6 +9,7 @@ import '../../../../core/widgets/main_app_button.dart';
 class PriceWidget extends StatelessWidget {
   final String action;
   final void Function() onTap;
+
   const PriceWidget({super.key, required this.action, required this.onTap});
 
   @override

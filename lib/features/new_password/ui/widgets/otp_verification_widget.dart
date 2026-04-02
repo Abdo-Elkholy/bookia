@@ -6,7 +6,9 @@ import 'package:pinput/pinput.dart';
 
 class OtpVerificationWidget extends StatelessWidget {
   final String? Function(String?) validator;
+
   OtpVerificationWidget({super.key, required this.validator});
+
   final PinTheme _defaultPinTheme = PinTheme(
     textStyle: AppTextStyle.text20Regular,
     width: 48.w,
@@ -23,6 +25,7 @@ class OtpVerificationWidget extends StatelessWidget {
       color: AppColors.appWhite,
     ),
   );
+
   @override
   Widget build(BuildContext context) {
     return Row(

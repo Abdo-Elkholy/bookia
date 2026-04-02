@@ -6,6 +6,7 @@ import '../../../../core/theme/app_text_style.dart';
 
 class SearchBarWidget extends StatelessWidget {
   const SearchBarWidget({super.key, required this.controller});
+
   final TextEditingController controller;
 
   @override

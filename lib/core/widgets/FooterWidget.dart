@@ -7,6 +7,7 @@ class FooterWidget extends StatelessWidget {
   final String title;
   final String action;
   final String target;
+
   const FooterWidget({
     super.key,
     required this.title,

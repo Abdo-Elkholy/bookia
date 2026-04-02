@@ -6,6 +6,7 @@ import '../../../../core/widgets/main_app_button.dart';
 
 class FailedStateWidget extends StatelessWidget {
   final void Function()? onTap;
+
   const FailedStateWidget({super.key, required this.onTap});
 
   @override

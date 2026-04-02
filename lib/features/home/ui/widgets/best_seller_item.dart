@@ -12,6 +12,7 @@ import 'book_widget.dart';
 
 class BestSellerItem extends StatelessWidget {
   final Product book;
+
   const BestSellerItem({super.key, required this.book});
 
   @override

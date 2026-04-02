@@ -7,6 +7,7 @@ final class WishlistInitial extends WishlistState {}
 
 final class WishlistLoaded extends WishlistState {
   final List<WishlistBook> books;
+
   WishlistLoaded({required this.books});
 }
 

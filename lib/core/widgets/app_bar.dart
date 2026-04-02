@@ -7,6 +7,7 @@ class SubScreensAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
   final Widget? icon;
   final Widget? widget;
+
   const SubScreensAppBar({super.key, this.title, this.icon, this.widget});
 
   @override

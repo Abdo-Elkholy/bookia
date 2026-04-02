@@ -39,6 +39,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

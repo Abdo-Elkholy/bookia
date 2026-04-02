@@ -8,6 +8,7 @@ class MainAppButton extends StatelessWidget {
   final String title;
   final Color? color;
   final void Function() onTap;
+
   const MainAppButton({
     super.key,
     required this.title,

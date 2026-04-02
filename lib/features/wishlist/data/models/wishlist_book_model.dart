@@ -20,6 +20,7 @@ class WishlistBook extends HiveObject {
 
   @HiveField(4, defaultValue: '')
   final String description;
+
   WishlistBook({
     required this.id,
     required this.name,

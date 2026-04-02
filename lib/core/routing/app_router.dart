@@ -2,15 +2,14 @@ import 'package:bookia/core/routing/routs.dart';
 import 'package:bookia/features/auth/cubit/auth_state_cubit.dart';
 import 'package:bookia/features/auth/ui/login_screen.dart';
 import 'package:bookia/features/auth/ui/register_screen.dart';
+import 'package:bookia/features/cart/ui/screens/checkout_screen.dart';
 import 'package:bookia/features/home/ui/screens/book_details_screen.dart';
 import 'package:bookia/features/home/ui/screens/home_screen.dart';
 import 'package:bookia/features/on_boarding/ui/on_boarding_screen/on_boarding_screen.dart';
 import 'package:bookia/features/root/cubit/root_cubit.dart';
 import 'package:bookia/features/search/ui/search_screen.dart';
-import 'package:bookia/features/cart/ui/screens/checkout_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bookia/features/wishlist/cubit/wishlist_cubit.dart';
 
 import '../../features/home/data/models/product_model.dart';
 import '../../features/new_password/ui/screens/finish_screen.dart';
@@ -75,4 +74,3 @@ class AppRouter {
     }
   }
 }
-

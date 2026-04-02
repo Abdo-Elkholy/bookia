@@ -9,6 +9,7 @@ final class SearchLoading extends SearchState {}
 
 final class SearchSuccess extends SearchState {
   final List<Product> books;
+
   SearchSuccess(this.books);
 }
 

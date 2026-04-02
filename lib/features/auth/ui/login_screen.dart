@@ -98,7 +98,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.pop(context);
                       showDialog(
                         context: context,
-                        builder: (context) => AlertDialog(title: Text("Error".tr())),
+                        builder: (context) =>
+                            AlertDialog(title: Text("Error".tr())),
                       );
                     } else if (state is AuthSuccessState) {
                       context.pushNamedAndRemoveAll(Routs.root);

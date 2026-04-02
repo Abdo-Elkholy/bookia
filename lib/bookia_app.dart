@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BookiaApp extends StatelessWidget {
   final String? token;
+
   const BookiaApp({super.key, required this.token});
 
   @override

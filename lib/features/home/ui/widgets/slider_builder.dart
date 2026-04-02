@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SliderBuilder extends StatefulWidget {
   final List<Widget> items;
+
   const SliderBuilder({super.key, required this.items});
 
   @override

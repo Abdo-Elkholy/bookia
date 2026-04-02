@@ -8,12 +8,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/routing/routs.dart';
-import '../../data/models/wishlist_book_model.dart';
 import '../../../home/data/models/product_model.dart';
+import '../../data/models/wishlist_book_model.dart';
 
 class WishlistItem extends StatelessWidget {
   final WishlistBook book;
   final VoidCallback onRemove;
+
   const WishlistItem({super.key, required this.book, required this.onRemove});
 
   @override

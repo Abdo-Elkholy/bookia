@@ -76,7 +76,10 @@ class CartItem extends StatelessWidget {
 
                     Row(
                       children: [
-                        _iconStyle(Icons.add),
+                        GestureDetector(
+                          child: _iconStyle(Icons.add),
+                          onTap: () {},
+                        ),
                         const SizedBox(width: 16),
                         Text(
                           '01',

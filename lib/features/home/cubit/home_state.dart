@@ -9,6 +9,7 @@ final class HomeLoadingState extends HomeState {}
 
 final class HomeSuccessState extends HomeState {
   final List images;
+
   HomeSuccessState(this.images);
 }
 
@@ -20,6 +21,7 @@ final class BestSellerLoadingState extends HomeState {}
 
 final class BestSellerSuccessState extends HomeState {
   final List<Product> books;
+
   BestSellerSuccessState({required this.books});
 }
 

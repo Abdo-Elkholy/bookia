@@ -11,6 +11,7 @@ class BookWidget extends StatelessWidget {
   final TextStyle priceStyle;
   final TextStyle actionStyle;
   final int flex;
+
   const BookWidget({
     super.key,
     required this.price,

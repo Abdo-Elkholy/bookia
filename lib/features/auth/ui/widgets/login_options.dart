@@ -9,6 +9,7 @@ import '../../../../gen/assets.gen.dart';
 
 class LoginOptions extends StatelessWidget {
   const LoginOptions({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -53,6 +54,7 @@ class LoginOptions extends StatelessWidget {
 class LoginOption extends StatelessWidget {
   final String title;
   final String iconPath;
+
   const LoginOption({super.key, required this.title, required this.iconPath});
 
   @override

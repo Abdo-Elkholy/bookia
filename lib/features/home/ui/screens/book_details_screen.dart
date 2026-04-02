@@ -1,5 +1,3 @@
-import 'package:bookia/core/helper/extentions.dart';
-import 'package:bookia/core/routing/routs.dart';
 import 'package:bookia/core/theme/app_colors.dart';
 import 'package:bookia/core/theme/app_text_style.dart';
 import 'package:bookia/core/widgets/network_image.dart';
@@ -17,6 +15,7 @@ import '../widgets/book_widget.dart';
 class BookDetailsScreen extends StatelessWidget {
   final Product book;
   final WishlistCubit? wishlistCubit;
+
   const BookDetailsScreen({super.key, required this.book, this.wishlistCubit});
 
   @override
@@ -42,6 +41,7 @@ class BookDetailsScreen extends StatelessWidget {
 
 class _BookDetailsBody extends StatelessWidget {
   final Product book;
+
   const _BookDetailsBody({required this.book});
 
   @override
@@ -132,7 +132,7 @@ class _BookDetailsBody extends StatelessWidget {
                   Navigator.pop(context);
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text("Failed to add to cart".tr()),
+                      content: Text(state.error),
                       backgroundColor: Colors.red,
                     ),
                   );

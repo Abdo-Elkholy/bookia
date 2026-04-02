@@ -6,5 +6,6 @@ class ApiConstants {
   static const String registerUrl = "$baseUrl/register";
   static const String searchUrl = "$baseUrl/products-search?name=";
   static const String addToCart = "$baseUrl/add-to-cart";
+  static const String removeItem = "$baseUrl/remove-from-cart";
   static const String showCart = "$baseUrl/cart";
 }

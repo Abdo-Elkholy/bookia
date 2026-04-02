@@ -1,12 +1,16 @@
+import 'package:bookia/features/cart/data/model/cart_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_style.dart';
-import '../../../../gen/assets.gen.dart';
+import '../../cubit/cart_cubit.dart';
 
-class CartItem extends StatelessWidget {
-  const CartItem({super.key});
+class CartItemWidget extends StatelessWidget {
+  const CartItemWidget({super.key, required this.item});
+
+  final CartItem item;
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +19,10 @@ class CartItem extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(12),
-          child: Image.asset(
-            Assets.images.book1.path,
+          child: Image.network(
+            item.itemProductImage!,
             width: 105,
-            fit: BoxFit.cover,
+            fit: BoxFit.fill,
           ),
         ),
         Expanded(
@@ -33,7 +37,9 @@ class CartItem extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        'The Republic',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        item.itemProductName ?? "error",
                         style: AppTextStyle.text20Regular.copyWith(
                           color: AppColors.textGray,
                           fontWeight: FontWeight.w400,
@@ -65,7 +71,7 @@ class CartItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '₹285',
+                      item.itemProductPrice ?? "##",
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -74,22 +80,37 @@ class CartItem extends StatelessWidget {
                     ),
                     SizedBox(height: 40.h),
 
-                    Row(
-                      children: [
-                        GestureDetector(
-                          child: _iconStyle(Icons.add),
-                          onTap: () {},
-                        ),
-                        const SizedBox(width: 16),
-                        Text(
-                          '01',
-                          style: AppTextStyle.text18Regular.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        _iconStyle(Icons.remove),
-                      ],
+                    BlocBuilder<CartCubit, CartState>(
+                      builder: (context, state) {
+                        return Row(
+                          children: [
+                            GestureDetector(
+                              child: _iconStyle(Icons.add),
+                              onTap: () {
+                                context.read<CartCubit>().addToCart(
+                                  item.itemProductId ?? 0,
+                                );
+                              },
+                            ),
+                            const SizedBox(width: 16),
+                            Text(
+                              "${item.itemQuantity}",
+                              style: AppTextStyle.text18Regular.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(width: 16),
+                            GestureDetector(
+                              child: _iconStyle(Icons.remove),
+                              onTap: () {
+                                context.read<CartCubit>().removeItem(
+                                  item.itemId ?? 0,
+                                );
+                              },
+                            ),
+                          ],
+                        );
+                      },
                     ),
                   ],
                 ),

@@ -1,4 +1,5 @@
 import 'package:bookia/core/theme/app_colors.dart';
+import 'package:bookia/features/cart/cubit/cart_cubit.dart';
 import 'package:bookia/features/home/ui/screens/home_screen.dart';
 import 'package:bookia/features/new_password/ui/screens/finish_screen.dart';
 import 'package:bookia/features/root/cubit/root_cubit.dart';
@@ -24,8 +25,11 @@ class Root extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => WishlistCubit()..getBooks(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => WishlistCubit()..getBooks()),
+        BlocProvider(create: (_) => CartCubit()..showCart()),
+      ],
       child: Builder(
         builder: (context) {
           return Scaffold(
@@ -68,6 +72,9 @@ class Root extends StatelessWidget {
                           context.read<RootCubit>().onTap(i);
                           if (i == 1) {
                             context.read<WishlistCubit>().getBooks();
+                          }
+                          if (i == 2) {
+                            context.read<CartCubit>().showCart();
                           }
                         },
                       ),

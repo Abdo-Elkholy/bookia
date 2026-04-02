@@ -2,6 +2,7 @@ import 'package:bookia/core/helper/extentions.dart';
 import 'package:bookia/core/theme/app_colors.dart';
 import 'package:bookia/core/theme/app_text_style.dart';
 import 'package:bookia/core/widgets/network_image.dart';
+import 'package:bookia/features/cart/cubit/cart_cubit.dart';
 import 'package:bookia/features/wishlist/cubit/wishlist_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,6 +33,7 @@ class WishlistItem extends StatelessWidget {
               description: book.description,
             ),
             'wishlistCubit': context.read<WishlistCubit>(),
+            'cartCubit': context.read<CartCubit>(),
           },
         );
       },

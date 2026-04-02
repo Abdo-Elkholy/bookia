@@ -59,6 +59,7 @@ class AppRouter {
             builder: (_) => BookDetailsScreen(
               book: args['book'] as Product,
               wishlistCubit: args['wishlistCubit'],
+              cartCubit: args['cartCubit'],
             ),
           );
         }

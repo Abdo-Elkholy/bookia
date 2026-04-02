@@ -15,27 +15,37 @@ import '../widgets/book_widget.dart';
 class BookDetailsScreen extends StatelessWidget {
   final Product book;
   final WishlistCubit? wishlistCubit;
+  final CartCubit? cartCubit;
 
-  const BookDetailsScreen({super.key, required this.book, this.wishlistCubit});
+  const BookDetailsScreen({
+    super.key,
+    required this.book,
+    this.wishlistCubit,
+    this.cartCubit,
+  });
 
   @override
   Widget build(BuildContext context) {
+    Widget child = _BookDetailsBody(book: book);
+
+    // Wrap with CartCubit
+    if (cartCubit != null) {
+      child = BlocProvider.value(value: cartCubit!, child: child);
+    } else {
+      child = BlocProvider(create: (_) => CartCubit(), child: child);
+    }
+
+    // Wrap with WishlistCubit
     if (wishlistCubit != null) {
-      return BlocProvider.value(
-        value: wishlistCubit!,
-        child: BlocProvider(
-          create: (_) => CartCubit(),
-          child: _BookDetailsBody(book: book),
-        ),
+      child = BlocProvider.value(value: wishlistCubit!, child: child);
+    } else {
+      child = BlocProvider(
+        create: (_) => WishlistCubit()..getBooks(),
+        child: child,
       );
     }
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_) => WishlistCubit()..getBooks()),
-        BlocProvider(create: (_) => CartCubit()),
-      ],
-      child: _BookDetailsBody(book: book),
-    );
+
+    return child;
   }
 }
 
@@ -113,7 +123,7 @@ class _BookDetailsBody extends StatelessWidget {
 
             BlocListener<CartCubit, CartState>(
               listener: (context, state) {
-                if (state is CartLoading) {
+                if (state is CartLoading || state is UpdateCartLoading) {
                   showDialog(
                     barrierDismissible: false,
                     context: context,

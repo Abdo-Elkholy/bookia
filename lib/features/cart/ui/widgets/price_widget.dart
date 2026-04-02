@@ -8,9 +8,15 @@ import '../../../../core/widgets/main_app_button.dart';
 
 class PriceWidget extends StatelessWidget {
   final String action;
+  final String total;
   final void Function() onTap;
 
-  const PriceWidget({super.key, required this.action, required this.onTap});
+  const PriceWidget({
+    super.key,
+    required this.action,
+    required this.onTap,
+    required this.total,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +34,7 @@ class PriceWidget extends StatelessWidget {
                 ),
               ),
               Text(
-                "\$ 95.00",
+                total,
                 style: AppTextStyle.text24Regular.copyWith(
                   fontWeight: FontWeight.w600,
                 ),
